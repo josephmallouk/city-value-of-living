@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Is it worth it? Value of living in 30 US metros</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f6f8;--card:#fff;--ink:#14202b;--mut:#5b6b7a;--line:#d9e0e7;--acc:#0b6b63;--l:#2f7d5b;--m:#b7791f;--h:#8a3d6e;--bar:#0b6b63}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0f161d;--card:#17212b;--ink:#e6edf3;--mut:#98a8b8;--line:#2a3846;--acc:#4fc1b3;--l:#5fb88a;--m:#e0a64a;--h:#d28ab8;--bar:#4fc1b3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0f161d;--card:#17212b;--ink:#e6edf3;--mut:#98a8b8;--line:#2a3846;--acc:#4fc1b3;--l:#5fb88a;--m:#e0a64a;--h:#d28ab8;--bar:#4fc1b3}}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Avenir Next",Avenir,"Segoe UI",Roboto,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.w{max-width:1120px;margin:0 auto;padding:20px 16px 40px}
+h1{font:600 clamp(24px,4vw,34px)/1.15 Georgia,"Times New Roman",serif;margin:0 0 6px}
+.sub{color:var(--mut);max-width:70ch;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+h2{font-size:15px;margin:0 0 8px;font-weight:600}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 8px;margin-bottom:8px;font-size:13px}
+.sl input{grid-column:1/3;width:100%;accent-color:var(--acc)}
+.sl b{font-weight:600}.sl span{color:var(--mut)}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:7px;padding:5px 10px;cursor:pointer}
+button[aria-pressed="true"]{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.sc{width:100%;height:auto;display:block}
+.tw{overflow-x:auto;margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:13px}
+th,td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:600;color:var(--mut);font-size:12px;vertical-align:bottom}
+th:nth-child(-n+3),td:nth-child(-n+3){text-align:left}
+td.ov{min-width:150px}.bar{display:inline-block;height:8px;border-radius:4px;background:var(--bar);vertical-align:middle;margin-right:6px}
+.chip{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;border:1px solid currentColor}
+.LCOL{color:var(--l)}.MCOL{color:var(--m)}.HCOL{color:var(--h)}
+td.hm{color:var(--ink)}
+.note{color:var(--mut);font-size:12px;margin-top:12px;max-width:80ch}
+.tier{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.tier div{border:1px solid var(--line);border-radius:8px;padding:8px;font-size:13px}.tier b{font-size:20px;display:block}
+</style></head><body><div class="w">
+<h1>Is it worth it? Value of living in 30 US metros</h1>
+<p class="sub">Each metro scores 1–100 for an early-career finance professional, weighing what a place costs against what it gives back. Change the weights to match your priorities.</p>
+<div class="grid">
+<div class="card" id="ctl"><h2>What matters to you</h2><div id="sls"></div>
+<div class="btns" id="pre"></div><div class="note" id="wsum"></div></div>
+<div class="card"><h2>Cheap or expensive, how much does the city give back?</h2>
+<svg class="sc" id="sc" viewBox="0 0 640 330" role="img" aria-label="Scatter of cost-of-living score versus overall value score"></svg>
+<div class="tier" id="tier"></div></div></div>
+<div class="tabs" id="tabs" style="margin-top:16px"></div>
+<div class="tw"><table id="tb"></table></div>
+<p class="note">Scores are relative standings across these 30 metros (10 most populous in each home-price tier), not absolute measures; gaps of a few points are not meaningful. Data: Zillow (Sep 2026), BEA price parities (2024), BLS wages (May 2025), ACS 2025, County Health Rankings 2025, NOAA 1991–2020 normals. Entry-level pay is proxied by the 25th-percentile business and finance wage. Health, safety and social measures are county data mapped to metros. Weather for New York uses Newark; Riverside’s is from a secondary source. Wage columns exclude bonuses.</p>
+</div>
+<script>
+const D=[{"c":"New York","t":"HCOL","p":[76.0,32.2,75.5,71.5,97.1,42.8,34.7],"o":61.8,"h":731,"r":112.6,"w":104,"e":92},{"c":"Los Angeles","t":"HCOL","p":[46.4,11.8,43.4,65.1,82.3,82.5,44.3],"o":54.1,"h":950,"r":113.6,"w":93,"e":82},{"c":"Washington DC","t":"HCOL","p":[79.0,47.4,87.6,89.7,83.2,53.8,54.4],"o":71.0,"h":570,"r":108.9,"w":105,"e":97},{"c":"Boston","t":"HCOL","p":[75.7,34.6,87.3,83.1,100,34.3,52.5],"o":67.1,"h":726,"r":108.3,"w":103,"e":95},{"c":"San Francisco","t":"HCOL","p":[89.9,2.8,78.9,88.1,87.5,87.8,43.0],"o":68.6,"h":1120,"r":115.6,"w":113,"e":98},{"c":"Riverside","t":"HCOL","p":[13.2,40.5,25.5,46.4,67.4,76.4,19.6],"o":41.9,"h":580,"r":106.4,"w":79,"e":74},{"c":"Seattle","t":"HCOL","p":[76.6,42.6,80.1,82.5,84.7,72.2,70.5],"o":73.0,"h":720,"r":111.1,"w":102,"e":92},{"c":"San Diego","t":"HCOL","p":[47.9,11.4,55.9,71.4,87.7,84.5,53.4],"o":59.3,"h":927,"r":111.9,"w":96,"e":86},{"c":"Denver","t":"HCOL","p":[60.1,54.4,65.6,74.1,72.9,35.5,78.2],"o":63.3,"h":555,"r":105.8,"w":96,"e":91},{"c":"Portland","t":"HCOL","p":[47.5,54.8,55.6,73.6,81.5,71.0,65.0],"o":64.5,"h":539,"r":105.4,"w":90,"e":86},{"c":"Chicago","t":"MCOL","p":[37.9,69.3,55.5,71.2,69.1,35.6,40.2],"o":54.6,"h":356,"r":103.6,"w":85,"e":82},{"c":"Dallas","t":"MCOL","p":[30.0,67.0,36.9,56.3,72.0,63.1,45.4],"o":53.4,"h":358,"r":103.1,"w":81,"e":79},{"c":"Houston","t":"MCOL","p":[23.2,75.4,41.5,34.2,64.1,70.1,28.4],"o":48.6,"h":303,"r":98.6,"w":80,"e":82},{"c":"Philadelphia","t":"MCOL","p":[36.1,63.3,57.1,60.0,66.2,47.6,45.2],"o":54.1,"h":386,"r":102.6,"w":85,"e":82},{"c":"Miami","t":"MCOL","p":[25.1,41.5,21.0,49.4,66.5,81.9,24.4],"o":44.8,"h":477,"r":114.2,"w":80,"e":70},{"c":"Atlanta","t":"MCOL","p":[29.7,69.9,46.2,63.4,58.5,65.5,39.6],"o":53.7,"h":376,"r":100.1,"w":81,"e":81},{"c":"Phoenix","t":"MCOL","p":[23.5,62.4,29.5,56.1,63.7,64.5,41.8],"o":49.3,"h":441,"r":103.3,"w":79,"e":76},{"c":"Minneapolis","t":"MCOL","p":[49.3,65.5,57.6,86.0,89.2,22.9,57.7],"o":61.6,"h":388,"r":104.8,"w":88,"e":84},{"c":"Tampa","t":"MCOL","p":[22.0,68.4,36.1,50.3,63.5,77.2,30.4],"o":50.2,"h":357,"r":100.9,"w":79,"e":78},{"c":"Baltimore","t":"MCOL","p":[44.9,61.4,61.3,62.2,53.3,50.4,33.0],"o":52.8,"h":397,"r":104.5,"w":92,"e":88},{"c":"Detroit","t":"LCOL","p":[25.9,74.7,49.7,58.0,64.0,33.5,42.3],"o":50.2,"h":264,"r":100.3,"w":82,"e":81},{"c":"St. Louis","t":"LCOL","p":[24.2,89.6,57.5,53.2,39.6,48.6,40.6],"o":51.0,"h":273,"r":95.1,"w":80,"e":84},{"c":"San Antonio","t":"LCOL","p":[13.2,84.9,38.3,34.0,63.8,69.1,32.5],"o":48.5,"h":274,"r":94.7,"w":78,"e":83},{"c":"Pittsburgh","t":"LCOL","p":[18.0,85.9,45.7,62.2,75.9,36.9,49.6],"o":53.9,"h":228,"r":94.7,"w":77,"e":82},{"c":"Cleveland","t":"LCOL","p":[19.6,87.0,61.8,48.1,60.6,25.5,35.7],"o":48.8,"h":250,"r":93.9,"w":78,"e":83},{"c":"Oklahoma City","t":"LCOL","p":[10.0,96.0,56.9,39.6,58.3,57.5,35.5],"o":51.0,"h":243,"r":90.4,"w":78,"e":86},{"c":"Memphis","t":"LCOL","p":[9.1,93.0,44.7,19.0,0,61.7,32.7],"o":37.8,"h":242,"r":92.2,"w":76,"e":83},{"c":"New Orleans","t":"LCOL","p":[6.8,91.5,32.5,30.1,26.9,71.4,34.1],"o":42.5,"h":257,"r":92.6,"w":76,"e":83},{"c":"Birmingham","t":"LCOL","p":[15.8,92.4,52.4,39.3,21.7,65.4,49.4],"o":48.6,"h":261,"r":91.6,"w":78,"e":85},{"c":"Tulsa","t":"LCOL","p":[9.0,97.9,58.3,34.1,52.8,55.4,41.0],"o":50.3,"h":252,"r":89.2,"w":76,"e":85}];
+const G=["Income & opportunity","Cost of living (higher = cheaper)","Purchasing power & wealth","Health & environment","Safety","Climate","Social & lifestyle"];
+const SH=["Income","Cost","Buying power","Health","Safety","Climate","Social"];
+const PRE={"Equal":[1,1,1,1,1,1,1],"Finance first":[3,2,3,1,1,.5,1],"Lifestyle first":[1,1,1,2,2,2,2]};
+let W=[1,1,1,1,1,1,1],tf="All",sk="o";
+const $=id=>document.getElementById(id);
+function score(c){const s=W.reduce((a,b)=>a+b,0)||1;return 1+0.99*c.p.reduce((a,p,i)=>a+p*W[i]/s,0)}
+function sliders(){$("sls").innerHTML=G.map((g,i)=>`<div class="sl"><b>${g}</b><span id="v${i}"></span><input type="range" min="0" max="10" step=".5" value="${W[i]}" aria-label="${g} weight" data-i="${i}"></div>`).join("");
+document.querySelectorAll("#sls input").forEach(e=>e.oninput=()=>{W[+e.dataset.i]=+e.value;pre(null);draw()});
+$("pre").innerHTML=Object.keys(PRE).map(k=>`<button data-k="${k}" aria-pressed="false">${k}</button>`).join("");
+document.querySelectorAll("#pre button").forEach(b=>b.onclick=()=>{W=PRE[b.dataset.k].slice();document.querySelectorAll("#sls input").forEach((e,i)=>e.value=W[i]);pre(b.dataset.k);draw()});pre("Equal")}
+function pre(k){document.querySelectorAll("#pre button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===k))}
+function tabs(){$("tabs").innerHTML=["All","LCOL","MCOL","HCOL"].map(t=>`<button data-t="${t}" aria-pressed="${t===tf}">${t==="All"?"All 30":t}</button>`).join("");
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{tf=b.dataset.t;draw()})}
+function heat(v){return `background:color-mix(in srgb,var(--bar) ${Math.round(v*.55)}%,transparent)`}
+function draw(){
+const s=W.reduce((a,b)=>a+b,0)||1;
+document.querySelectorAll("#sls span").forEach((e,i)=>e.textContent=Math.round(100*W[i]/s)+"%");
+$("wsum").textContent=s===0?"Set at least one weight above zero.":"Weights are shown as a share of the total.";
+const R=D.map(c=>({...c,s:score(c)})).sort((a,b)=>b.s-a.s).map((c,i)=>({...c,k:i+1}));
+tabs();
+const rows=R.filter(c=>tf==="All"||c.t===tf);
+$("tb").innerHTML=`<thead><tr><th>#</th><th>Metro</th><th>Tier</th><th>Overall</th>${SH.map(h=>`<th>${h}</th>`).join("")}<th>Home value</th><th>Prices (US=100)</th><th>Finance wage</th></tr></thead><tbody>`+
+rows.map(c=>`<tr><td>${c.k}</td><td><b>${c.c}</b></td><td><span class="chip ${c.t}">${c.t}</span></td><td class="ov"><span class="bar" style="width:${c.s*.9}px"></span><b>${c.s.toFixed(1)}</b></td>${c.p.map(v=>`<td class="hm" style="${heat(v)}">${Math.round(v)}</td>`).join("")}<td>$${c.h}k</td><td>${c.r}</td><td>$${c.w}k</td></tr>`).join("")+"</tbody>";
+const T=["LCOL","MCOL","HCOL"],nm={LCOL:"Low-cost",MCOL:"Mid-cost",HCOL:"High-cost"};
+$("tier").innerHTML=T.map(t=>{const a=R.filter(c=>c.t===t);return `<div><span class="chip ${t}">${nm[t]}</span><b>${(a.reduce((x,c)=>x+c.s,0)/a.length).toFixed(1)}</b>average score</div>`}).join("");
+// scatter
+const X=c=>50+c.p[1]/100*560,Y=v=>290-(v-20)/60*260,col={LCOL:"var(--l)",MCOL:"var(--m)",HCOL:"var(--h)"};
+let g="";for(let v=20;v<=80;v+=20)g+=`<line x1="50" x2="610" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="44" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="var(--mut)">${v}</text>`;
+g+=`<text x="330" y="322" text-anchor="middle" font-size="12" fill="var(--mut)">Cost-of-living score (left = expensive, right = cheap)</text><text x="12" y="160" font-size="12" fill="var(--mut)" transform="rotate(-90 12 160)" text-anchor="middle">Overall score</text>`;
+R.forEach(c=>{const op=tf==="All"||c.t===tf?1:.15;g+=`<g opacity="${op}"><circle cx="${X(c)}" cy="${Y(c.s)}" r="5.5" fill="${col[c.t]}"/><text x="${X(c)+8}" y="${Y(c.s)+4}" font-size="10" fill="var(--ink)">${c.c}</text></g>`});
+$("sc").innerHTML=g}
+sliders();draw();
+</script></body></html>
